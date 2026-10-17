@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+@source "../views/**/*.blade.php";
+@source "../js/**/*.js";
+@source "../../app/**/*.php";
+
+@theme inline {
+    --color-rino-background: var(--background);
+    --color-rino-surface: var(--surface);
+    --color-rino-surface-secondary: var(--surface-secondary);
+    --color-rino-border: var(--border);
+
+    --color-rino-heading: var(--text-heading);
+    --color-rino-body: var(--text-body);
+    --color-rino-muted: var(--text-muted);
+
+    --color-rino-primary: var(--primary);
+    --color-rino-primary-hover: var(--primary-hover);
+    --color-rino-primary-text: var(--primary-text);
+}
+
+html {
+    font-size: var(--font-size-base);
+}
+
+body {
+    font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading);
+}
