@@ -20,63 +20,40 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 
 class CroftPanelProvider extends PanelProvider
 {
-    public function panel(
-        Panel $panel
-    ): Panel {
-        $theme =
-            Theme::settings();
+    public function panel(Panel $panel): Panel
+    {
+        $primary = '#193CD2';
 
-        $primary =
-            $theme['dark']['primary']
-            ??
-            $theme['light']['primary']
-            ??
-            '#193CD2';
+        if (! app()->runningInConsole()) {
+            $theme = Theme::settings();
+
+            $primary = $theme['dark']['primary']
+                ?? $theme['light']['primary']
+                ?? $primary;
+        }
 
         return $panel
             ->default()
-            ->id(
-                'admin'
-            )
-            ->path(
-                'admin'
-            )
+            ->id('admin')
+            ->path('admin')
             ->login()
             ->colors([
-                'primary' =>
-                    Color::hex(
-                        $primary
-                    ),
+                'primary' => Color::hex($primary),
             ])
             ->discoverResources(
-                in:
-                    app_path(
-                        'Filament/Resources'
-                    ),
-
-                for:
-                    'App\Filament\Resources'
+                in: app_path('Filament/Resources'),
+                for: 'App\\Filament\\Resources'
             )
             ->discoverPages(
-                in:
-                    app_path(
-                        'Filament/Pages'
-                    ),
-
-                for:
-                    'App\Filament\Pages'
+                in: app_path('Filament/Pages'),
+                for: 'App\\Filament\\Pages'
             )
             ->pages([
                 Dashboard::class,
             ])
             ->discoverWidgets(
-                in:
-                    app_path(
-                        'Filament/Widgets'
-                    ),
-
-                for:
-                    'App\Filament\Widgets'
+                in: app_path('Filament/Widgets'),
+                for: 'App\\Filament\\Widgets'
             )
             ->middleware([
                 EncryptCookies::class,
