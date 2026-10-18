@@ -87,10 +87,9 @@
         ?? 'center';
 
     $backgroundUrl =
+    \App\Support\AssetUrl::resolve(
         $backgroundImage
-            ? Storage::disk('public')
-                ->url($backgroundImage)
-            : null;
+    );
 
     $backgroundSettings =
         match ($backgroundPosition) {

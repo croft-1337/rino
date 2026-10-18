@@ -62,38 +62,19 @@
     $centered =
         $alignment === 'center';
 
-    $resolveAvatar = function ($value): ?string {
-        if (is_array($value)) {
-            $value =
-                collect($value)
-                    ->filter()
-                    ->first();
-        }
+    
+$resolveAvatar = function ($value): ?string {
+    if (is_array($value)) {
+        $value = collect($value)
+            ->filter()
+            ->first();
+    }
 
-        $path =
-            trim(
-                (string) (
-                    $value
-                    ?? ''
-                )
-            );
+    return \App\Support\AssetUrl::resolve(
+        is_string($value) ? $value : null
+    );
+};
 
-        if ($path === '') {
-            return null;
-        }
-
-        if (
-            str_starts_with($path, 'http://')
-            ||
-            str_starts_with($path, 'https://')
-            ||
-            str_starts_with($path, '/')
-        ) {
-            return $path;
-        }
-
-        return Storage::disk('public')->url($path);
-    };
 
     $initials = function (string $name): string {
         return collect(

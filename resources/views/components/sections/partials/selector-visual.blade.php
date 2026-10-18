@@ -40,9 +40,7 @@
     ];
 
     $imageUrl =
-        $image
-            ? Storage::disk('public')->url($image)
-            : null;
+    \App\Support\AssetUrl::resolve($image);
 @endphp
 
 

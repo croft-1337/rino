@@ -96,7 +96,7 @@
             return $path;
         }
 
-        return Storage::disk('public')->url($path);
+        return \App\Support\AssetUrl::resolve($path);
     };
 @endphp
 

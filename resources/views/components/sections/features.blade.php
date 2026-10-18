@@ -516,7 +516,7 @@
 
                                     <img
 
-                                        src="{{ \Illuminate\Support\Facades\Storage::disk('public')->url($image) }}"
+                                        src="{{ \App\Support\AssetUrl::resolve($image) }}"
 
                                         alt=""
 

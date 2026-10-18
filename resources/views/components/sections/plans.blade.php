@@ -221,7 +221,7 @@
                                         "
                                     >
                                         <img
-                                            src="{{ \Illuminate\Support\Facades\Storage::disk('public')->url($plan['image']) }}"
+                                            src="{{ \App\Support\AssetUrl::resolve($plan['image']) }}"
                                             alt=""
                                             class="size-full object-contain"
                                         >
@@ -460,7 +460,7 @@
                                     "
                                 >
                                     <img
-                                        src="{{ \Illuminate\Support\Facades\Storage::disk('public')->url($image) }}"
+                                        src="{{ \App\Support\AssetUrl::resolve($image) }}"
                                         alt=""
                                         class="size-full object-contain"
                                     >
@@ -505,7 +505,7 @@
                                             "
                                         >
                                             <img
-                                                src="{{ \Illuminate\Support\Facades\Storage::disk('public')->url($image) }}"
+                                                src="{{ \App\Support\AssetUrl::resolve($image) }}"
                                                 alt=""
                                                 class="size-full object-contain"
                                             >
@@ -527,7 +527,7 @@
                                             "
                                         >
                                             <img
-                                                src="{{ \Illuminate\Support\Facades\Storage::disk('public')->url($image) }}"
+                                                src="{{ \App\Support\AssetUrl::resolve($image) }}"
                                                 alt=""
                                                 class="size-full object-contain"
                                             >
