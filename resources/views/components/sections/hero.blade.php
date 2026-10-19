@@ -227,43 +227,52 @@
                 absolute
                 inset-0
                 -z-20
+                pointer-events-none
             "
             style="
                 background:
-                    linear-gradient(
-                        to bottom,
+                    radial-gradient(
+                        ellipse 105% 95% at 4% 36%,
                         color-mix(
                             in srgb,
-                            var(--background) 58%,
+                            var(--background) 44%,
                             transparent
                         ) 0%,
                         color-mix(
                             in srgb,
-                            var(--background) 76%,
+                            var(--background) 22%,
                             transparent
-                        ) 58%,
-                        var(--background) 100%
-                    );
-            "
-        ></div>
-
-
-        <div
-            class="
-                absolute
-                inset-x-0
-                bottom-0
-                -z-10
-                h-12
-                sm:h-16
-                lg:h-20
-            "
-            style="
-                background:
+                        ) 36%,
+                        transparent 70%
+                    ),
                     linear-gradient(
-                        to top,
-                        var(--background),
-                        transparent
+                        to bottom,
+                        color-mix(
+                            in srgb,
+                            var(--background) 18%,
+                            transparent
+                        ) 0%,
+                        color-mix(
+                            in srgb,
+                            var(--background) 24%,
+                            transparent
+                        ) 20%,
+                        color-mix(
+                            in srgb,
+                            var(--background) 38%,
+                            transparent
+                        ) 44%,
+                        color-mix(
+                            in srgb,
+                            var(--background) 62%,
+                            transparent
+                        ) 66%,
+                        color-mix(
+                            in srgb,
+                            var(--background) 86%,
+                            transparent
+                        ) 84%,
+                        var(--background) 100%
                     );
             "
         ></div>
