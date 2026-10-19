@@ -68,9 +68,47 @@
         content="dark light"
     >
 
-    <title>
-        @yield('title', $siteName ?? 'Rino')
-    </title>
+    @php
+        $seo = \App\Support\SeoData::resolve(
+            get_defined_vars(),
+            trim($__env->yieldContent('title', $siteName ?? 'Rino'))
+        );
+    @endphp
+
+    <title>{{ $seo['title'] }}</title>
+
+    @if ($seo['description'] !== '')
+        <meta name="description" content="{{ $seo['description'] }}">
+    @endif
+
+    <meta name="robots" content="{{ $seo['robots'] }}">
+    <link rel="canonical" href="{{ $seo['canonical'] }}">
+    @if ($seo['company'] !== '')
+        <meta name="author" content="{{ $seo['company'] }}">
+    @endif
+
+    <meta property="og:type" content="{{ $seo['type'] }}">
+    <meta property="og:site_name" content="{{ $seo['siteName'] }}">
+    <meta property="og:title" content="{{ $seo['title'] }}">
+    <meta property="og:url" content="{{ $seo['canonical'] }}">
+    @if ($seo['description'] !== '')
+        <meta property="og:description" content="{{ $seo['description'] }}">
+    @endif
+    @if ($seo['imageUrl'])
+        <meta property="og:image" content="{{ $seo['imageUrl'] }}">
+    @endif
+
+    <meta name="twitter:card" content="{{ $seo['card'] }}">
+    <meta name="twitter:title" content="{{ $seo['title'] }}">
+    @if ($seo['description'] !== '')
+        <meta name="twitter:description" content="{{ $seo['description'] }}">
+    @endif
+    @if ($seo['imageUrl'])
+        <meta name="twitter:image" content="{{ $seo['imageUrl'] }}">
+    @endif
+    @if ($seo['twitter'])
+        <meta name="twitter:site" content="{{ $seo['twitter'] }}">
+    @endif
 
 
     @if (!empty($siteFavicon))

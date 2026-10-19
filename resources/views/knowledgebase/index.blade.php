@@ -20,21 +20,7 @@
     . $siteName
 )
 
-@push('head')
-    @if (
-        filled(
-            $knowledgebase[
-                'seo_description'
-            ]
-            ?? null
-        )
-    )
-        <meta
-            name="description"
-            content="{{ $knowledgebase['seo_description'] }}"
-        >
-    @endif
-@endpush
+
 
 @section('content')
     @if (

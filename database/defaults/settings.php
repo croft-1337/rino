@@ -228,6 +228,18 @@ return [
         'group' => 'contact',
     ],
 
+    'seo_default_title' => ['value' => '', 'type' => 'text', 'group' => 'seo'],
+    'seo_meta_description' => [
+    'value' => 'Powerful game server hosting, VPS, and web hosting with reliable performance, easy management, and dependable infrastructure.',
+    'type' => 'text',
+    'group' => 'seo',
+],
+    'seo_company_name' => ['value' => '', 'type' => 'text', 'group' => 'seo'],
+    'seo_robots' => ['value' => 'index,follow', 'type' => 'text', 'group' => 'seo'],
+    'seo_social_image' => ['value' => '', 'type' => 'image', 'group' => 'seo'],
+    'seo_twitter_card' => ['value' => 'summary_large_image', 'type' => 'text', 'group' => 'seo'],
+    'seo_twitter_username' => ['value' => '', 'type' => 'text', 'group' => 'seo'],
+
     'site_logo' => [
         'value' => 'branding/rino-logo.png',
         'type' => 'image',
@@ -235,10 +247,10 @@ return [
     ],
 
     'site_favicon' => [
-        'value' => '',
-        'type' => 'image',
-        'group' => 'branding',
-    ],
+    'value' => 'branding/rino-logo.png',
+    'type' => 'image',
+    'group' => 'branding',
+],
 
 
     /*

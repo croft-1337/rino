@@ -9,19 +9,7 @@
     . $siteName
 )
 
-@push('head')
-    @if (
-        filled(
-            $article
-                ->short_description
-        )
-    )
-        <meta
-            name="description"
-            content="{{ $article->short_description }}"
-        >
-    @endif
-@endpush
+
 
 @section('content')
     <article

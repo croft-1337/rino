@@ -6,6 +6,7 @@ use App\Models\Page;
 use App\Models\PageCategory;
 use Filament\Forms\Components\Builder;
 use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
@@ -471,6 +472,29 @@ class PageForm
                                     ])
                                     ->columns(2),
 
+                            ]),
+
+                        Tab::make('SEO')
+                            ->icon('heroicon-o-magnifying-glass')
+                            ->visible(fn (Get $get): bool => $get('page_type') !== Page::TYPE_EXTERNAL)
+                            ->schema([
+                                Section::make('Search Engine Optimization')
+                                    ->schema([
+                                        TextInput::make('seo_title')
+                                            ->label('SEO Title')
+                                            ->maxLength(255)
+                                            ->helperText('Optional. Uses the page title if empty.'),
+                                        Textarea::make('seo_description')
+                                            ->label('Meta Description')
+                                            ->rows(3)
+                                            ->maxLength(500),
+                                        FileUpload::make('seo_social_image')
+                                            ->label('Social Image')
+                                            ->image()
+                                            ->disk('public')
+                                            ->directory('seo/pages')
+                                            ->visibility('public'),
+                                    ]),
                             ]),
 
                         Tab::make(

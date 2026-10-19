@@ -22,6 +22,7 @@ class BlogPost extends Model
         'published',
         'seo_title',
         'seo_description',
+        'seo_social_image',
     ];
 
     protected function casts(): array

@@ -10,6 +10,7 @@ use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
@@ -79,15 +80,14 @@ class SiteSettings extends Page implements HasSchemas
                     'site_name'
                 ),
 
-            'site_tagline' =>
-                $this->getSetting(
-                    'site_tagline'
-                ),
 
-            'contact_email' =>
-                $this->getSetting(
-                    'contact_email'
-                ),
+            'seo_default_title' => $this->getSetting('seo_default_title'),
+            'seo_meta_description' => $this->getSetting('seo_meta_description'),
+            'seo_company_name' => $this->getSetting('seo_company_name'),
+            'seo_robots' => $this->getSetting('seo_robots') ?: 'index,follow',
+            'seo_social_image' => $this->getSetting('seo_social_image'),
+            'seo_twitter_card' => $this->getSetting('seo_twitter_card') ?: 'summary_large_image',
+            'seo_twitter_username' => $this->getSetting('seo_twitter_username'),
 
             'site_logo' =>
                 $this->getSetting(
@@ -137,22 +137,57 @@ class SiteSettings extends Page implements HasSchemas
                             ->required()
                             ->maxLength(255),
 
-                        TextInput::make(
-                            'site_tagline'
-                        )
-                            ->label(
-                                'Site Tagline'
-                            )
-                            ->maxLength(255),
+                    ])
+                    ->columns(2),
 
-                        TextInput::make(
-                            'contact_email'
-                        )
-                            ->label(
-                                'Contact Email'
-                            )
-                            ->email()
+                Section::make('Meta Tags')
+                    ->schema([
+                        TextInput::make('seo_default_title')
+                            ->label('Default Page Title')
+                            ->maxLength(255)
+                            ->helperText('Used as the homepage title and fallback when no more specific title is available.'),
+                        TextInput::make('seo_company_name')
+                            ->label('Author / Company Name')
                             ->maxLength(255),
+                        Textarea::make('seo_meta_description')
+                            ->label('Meta Description')
+                            ->rows(3)
+                            ->maxLength(500)
+                            ->helperText('Write a natural summary. Around 150–160 characters is a useful guide.')
+                            ->columnSpanFull(),
+                        Select::make('seo_robots')
+                            ->label('Robots Meta Tag')
+                            ->options([
+                                'index,follow' => 'Index, Follow',
+                                'noindex,follow' => 'Noindex, Follow',
+                                'noindex,nofollow' => 'Noindex, Nofollow',
+                            ])
+                            ->default('index,follow')
+                            ->native(false),
+                    ])
+                    ->columns(2),
+
+                Section::make('Social Sharing')
+                    ->schema([
+                        FileUpload::make('seo_social_image')
+                            ->label('Open Graph Image')
+                            ->image()
+                            ->disk('public')
+                            ->directory('seo')
+                            ->visibility('public')
+                            ->helperText('Recommended 1200 × 630 pixels.'),
+                        Select::make('seo_twitter_card')
+                            ->label('Twitter Card Type')
+                            ->options([
+                                'summary_large_image' => 'Summary Card with Large Image',
+                                'summary' => 'Summary Card',
+                            ])
+                            ->default('summary_large_image')
+                            ->native(false),
+                        TextInput::make('seo_twitter_username')
+                            ->label('Twitter Username')
+                            ->placeholder('@yourcompany')
+                            ->maxLength(100),
                     ])
                     ->columns(2),
 
@@ -574,30 +609,40 @@ class SiteSettings extends Page implements HasSchemas
                     'general',
             ],
 
-            'site_tagline' => [
-                'value' =>
-                    $data[
-                        'site_tagline'
-                    ] ?? null,
-
-                'type' =>
-                    'text',
-
-                'group' =>
-                    'general',
+            'seo_default_title' => [
+                'value' => $data['seo_default_title'] ?? null,
+                'type' => 'text',
+                'group' => 'seo',
             ],
-
-            'contact_email' => [
-                'value' =>
-                    $data[
-                        'contact_email'
-                    ] ?? null,
-
-                'type' =>
-                    'email',
-
-                'group' =>
-                    'contact',
+            'seo_meta_description' => [
+                'value' => $data['seo_meta_description'] ?? null,
+                'type' => 'text',
+                'group' => 'seo',
+            ],
+            'seo_company_name' => [
+                'value' => $data['seo_company_name'] ?? null,
+                'type' => 'text',
+                'group' => 'seo',
+            ],
+            'seo_robots' => [
+                'value' => $data['seo_robots'] ?? 'index,follow',
+                'type' => 'text',
+                'group' => 'seo',
+            ],
+            'seo_social_image' => [
+                'value' => $data['seo_social_image'] ?? null,
+                'type' => 'image',
+                'group' => 'seo',
+            ],
+            'seo_twitter_card' => [
+                'value' => $data['seo_twitter_card'] ?? 'summary_large_image',
+                'type' => 'text',
+                'group' => 'seo',
+            ],
+            'seo_twitter_username' => [
+                'value' => $data['seo_twitter_username'] ?? null,
+                'type' => 'text',
+                'group' => 'seo',
             ],
 
             'site_logo' => [

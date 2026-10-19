@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\KnowledgebaseArticles\Schemas;
 
 use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
@@ -78,6 +79,23 @@ class KnowledgebaseArticleForm
                             ->columnSpanFull(),
                     ])
                     ->columns(2),
+
+                Section::make('SEO')
+                    ->schema([
+                        TextInput::make('seo_title')
+                            ->label('SEO Title')
+                            ->maxLength(255),
+                        Textarea::make('seo_description')
+                            ->label('Meta Description')
+                            ->rows(3)
+                            ->maxLength(500),
+                        FileUpload::make('seo_social_image')
+                            ->label('Social Image')
+                            ->image()
+                            ->disk('public')
+                            ->directory('seo/knowledgebase')
+                            ->visibility('public'),
+                    ]),
 
                 Section::make('Publishing')
                     ->schema([

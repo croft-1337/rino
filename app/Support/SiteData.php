@@ -304,6 +304,16 @@ class SiteData
                     ''
                 ),
 
+            'seoSettings' => [
+                'default_title' => $settings->get('seo_default_title'),
+                'description' => $settings->get('seo_meta_description'),
+                'company' => $settings->get('seo_company_name'),
+                'robots' => $settings->get('seo_robots', 'index,follow'),
+                'social_image' => $settings->get('seo_social_image'),
+                'twitter_card' => $settings->get('seo_twitter_card', 'summary_large_image'),
+                'twitter_username' => $settings->get('seo_twitter_username'),
+            ],
+
             'defaultCurrency' =>
                 $defaultCurrency,
 

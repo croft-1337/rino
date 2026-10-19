@@ -13,27 +13,7 @@
     . $siteName
 )
 
-@push('head')
-    @if (
-        filled(
-            $post->seo_description
-        )
-    )
-        <meta
-            name="description"
-            content="{{ $post->seo_description }}"
-        >
-    @elseif (
-        filled(
-            $post->excerpt
-        )
-    )
-        <meta
-            name="description"
-            content="{{ $post->excerpt }}"
-        >
-    @endif
-@endpush
+
 
 @section('content')
 

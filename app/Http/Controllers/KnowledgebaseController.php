@@ -54,6 +54,7 @@ class KnowledgebaseController extends Controller
                     'active',
                     true
                 )
+                ->whereHas('category', fn ($query) => $query->where('active', true))
                 ->with(
                     'category'
                 )
@@ -223,6 +224,7 @@ class KnowledgebaseController extends Controller
                     'active',
                     true
                 )
+                ->whereHas('category', fn ($query) => $query->where('active', true))
                 ->with(
                     'category'
                 )
@@ -234,6 +236,7 @@ class KnowledgebaseController extends Controller
                     'active',
                     true
                 )
+                ->whereHas('category', fn ($query) => $query->where('active', true))
                 ->where(
                     'id',
                     '!=',
@@ -294,6 +297,10 @@ class KnowledgebaseController extends Controller
             )
             ->where(
                 'active',
+                true
+            )
+            ->where(
+                'published',
                 true
             )
             ->firstOrFail();

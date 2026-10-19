@@ -26,6 +26,9 @@ class Page extends Model
         'template',
         'page_type',
         'short_description',
+        'seo_title',
+        'seo_description',
+        'seo_social_image',
         'content',
         'sections',
 

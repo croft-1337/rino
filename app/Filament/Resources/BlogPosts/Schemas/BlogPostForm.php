@@ -257,6 +257,14 @@ class BlogPostForm
                                 170
                             )
                             ->columnSpanFull(),
+
+                        FileUpload::make('seo_social_image')
+                            ->label('Social Image')
+                            ->image()
+                            ->disk('public')
+                            ->directory('seo/blog')
+                            ->visibility('public')
+                            ->columnSpanFull(),
                     ])
                     ->columnSpanFull(),
             ]);

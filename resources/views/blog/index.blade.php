@@ -14,19 +14,7 @@
     . $siteName
 )
 
-@push('head')
-    @if (
-        filled(
-            $blog['seo_description']
-            ?? null
-        )
-    )
-        <meta
-            name="description"
-            content="{{ $blog['seo_description'] }}"
-        >
-    @endif
-@endpush
+
 
 @section('content')
 
